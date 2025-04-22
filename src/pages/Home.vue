@@ -2,7 +2,7 @@
   <section id="home" class="pt-14 px-6 pb-6 md:pt-[60px] bg-background md:h-screen">
     <div class="mx-auto text-center">
       <h2 class="title text-clamp-6xl font-extralight tracking-widest text-primary">Yoginee & Adrien</h2>
-      <p class="subtitle mt-4 text-clamp-2xl text-primary">{{ currentLang === 'fr' ? 'se marient' : 'are getting married' }}</p>
+      <p class="subtitle mt-2 text-clamp-2xl text-primary">{{ currentLang === 'fr' ? 'se marient' : 'are getting married' }}</p>
       <img src="/us.webp" class="illustration h-[400px] mx-auto mt-4 object-cover object-center rounded-xl shadow-2xl 2xl:h-[500px]">
       <p class="date mt-8 text-primary font-extrabold tracking-widest text-clamp-3xl">{{ currentLang === 'fr' ? 'LE 22 FÉVRIER 2026' : 'FEBRUARY 22, 2026' }}</p>
       <div class="date mt-4 text-primary font-medium tracking-widest text-clamp-xl">
@@ -25,14 +25,21 @@
     </div>
   </section>
   <section id="schedule" class="bg-background p-[40px] text-primary">
-    <div class="mx-auto max-w-2xl text-center leading-10">
+    <div class="mx-auto max-w-4xl text-center leading-10">
       <img src="/flower.avif" class="w-[100px] mx-auto">
       <h3 class="mt-6 text-primary font-extrabold tracking-widest text-3xl uppercase">{{ currentLang === 'fr' ? 'Programme' : 'Schedule' }}</h3>
-      <p class="mt-10 text-primary font-medium text-lg uppercase">{{ currentLang === 'fr' ? 'Jour 1 (22/02/2026) – Cérémonie Traditionnelle Tamoule' : 'Day 1 – Traditional Tamil Ceremony' }}</p>
+      <p class="mt-6">⚠ {{ currentLang === 'fr' ? 'On ajoutera des infos au fur et à mesure, alors n’hésitez pas à repasser par ici pendant vos préparatifs.' : 'We’ll be updating the site as we go, so feel free to check back while you plan your trip.' }}</p>
+      <p class="mt-8 text-primary font-medium text-lg uppercase"><span class="font-bold">{{ currentLang === 'fr' ? 'Jour 1' : 'Day 1' }}</span> - 22/02/2026 - {{ currentLang === 'fr' ? 'Cérémonie Traditionnelle Tamoule' : 'Traditional Tamil Ceremony' }}</p>
       <ul class="mt-4 w-lg text-center w-full max-w-[500px] mx-auto">
-        <li class="mt-2">📍 <strong>{{ currentLang === 'fr' ? 'Location' : 'Lieu' }}</strong> : Temple tamoul</li>
-        <li class="mt-2">🕑 <strong>{{ currentLang === 'fr' ? 'Heure : ' : 'Time : ' }}</strong>{{ currentLang === 'fr' ? '10h00 – 14h00' : '10am – 02pm' }}</li>
-        <li class="mt-2">👕 <strong>{{ currentLang === 'fr' ? 'Code vestimentaire : ' : 'Dress code :' }}</strong> {{ currentLang === 'fr' ? 'Tenue traditionnelle tamoule. Pour celles/ceux qui optent pour une tenue occidentale, merci de vous assurer que c’est décent et approprié.' : 'Traditional Tamil attire. For those choosing Western clothing, please ensure it is modest and appropriate.' }}</li>
+        <li class="mt-2">📍 <span class="font-semibold">{{ currentLang === 'fr' ? 'Location' : 'Lieu' }}</span> : Temple tamoul</li>
+        <li class="mt-2">🕑 <span class="font-semibold">{{ currentLang === 'fr' ? 'Heure : ' : 'Time : ' }}</span>{{ currentLang === 'fr' ? '10h00 – 14h00' : '10am – 02pm' }}</li>
+        <li class="mt-2">👕 <span class="font-semibold">{{ currentLang === 'fr' ? 'Code vestimentaire : ' : 'Dress code :' }}</span> {{ currentLang === 'fr' ? 'Tenue traditionnelle tamoule. Pour celles/ceux qui optent pour une tenue occidentale, merci de vous assurer que c’est décent et approprié.' : 'Traditional Tamil attire. For those choosing Western clothing, please ensure it is modest and appropriate.' }}</li>
+      </ul>
+      <p class="mt-10 text-primary font-medium text-lg uppercase"><span class="font-bold">{{ currentLang === 'fr' ? 'Jour 2' : 'Day 2' }}</span> - 23/02/2026 - {{ currentLang === 'fr' ? 'Cérémonie Laïque et Réception' : 'Secular ceremony' }}</p>
+      <ul class="mt-4 w-lg text-center w-full max-w-[500px] mx-auto">
+        <li class="mt-2">📍 <span class="font-semibold">{{ currentLang === 'fr' ? 'Location' : 'Lieu' }}</span> : {{ currentLang === 'fr' ? 'Encore à définir' : 'coming soon' }}</li>
+        <li class="mt-2">🕑 <span class="font-semibold">{{ currentLang === 'fr' ? 'Heure : ' : 'Time : ' }}</span>{{ currentLang === 'fr' ? '18h00 – 23h00' : '06pm – 11pm' }}</li>
+        <li class="mt-2">👕 <span class="font-semibold">{{ currentLang === 'fr' ? 'Code vestimentaire : ' : 'Dress code :' }}</span> {{ currentLang === 'fr' ? 'Élegant' : 'Elegant attire' }}</li>
       </ul>
     </div>
   </section>

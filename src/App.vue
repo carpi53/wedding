@@ -1,5 +1,5 @@
 <template>
-  <div id="home">
+  <div id="home" class="text-primary">
     <nav class="fixed z-30 left-20 top-20 bg-transparent">
       <ul class="hidden flex-col gap-4 justify-between text-primary lg:flex">
         <li class="hover:text-black cursor-pointer" @click="goToLink('home')">{{ currentLang === 'fr' ? 'Accueil' : 'Home' }}</li>
