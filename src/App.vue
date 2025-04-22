@@ -18,13 +18,8 @@
           <span class="text-white cursor-pointer" @click="goToLink('home')">{{ currentLang === 'fr' ? 'Accueil' : 'Home' }}</span>
           <span  class="text-white cursor-pointer" @click="goToLink('localisation')">{{ currentLang === 'fr' ? 'Ou ça se passe ?' : 'Where is it ?' }}</span>
           <span class="text-white cursor-pointer" @click="goToLink('schedule')">{{ currentLang === 'fr' ? 'Le programme' : 'Schedule' }}</span>
+          <span class="text-white cursor-pointer" @click="goToLink('rsvp')">{{ currentLang === 'fr' ? 'Répondre à l\'invitation' : 'RSVP' }}</span>
       </div>
-      <!-- <div class="absolute right-6 top-5 flex gap-4 items-center">
-      <button @click="toggleLangage" class="uppercase">{{ currentLang === 'fr' ? 'EN' : 'FR' }}</button>
-      <button type="button" class="bg-primary text-white px-6 py-2">
-        {{ currentLang === 'fr' ? 'RÉPONDRE' : 'RSVP' }}
-      </button> 
-    </div> -->
     </nav>
     <div class="hidden fixed z-50 right-20 top-10 gap-6 items-center lg:flex">
       <button @click="toggleLangage" class="uppercase h-10 w-10 cursor-pointer flex items-center justify-center hover:opacity-80">{{ currentLang === 'fr' ? 'EN' : 'FR' }}</button>
@@ -32,6 +27,7 @@
         <span>{{ currentLang === 'fr' ? 'RÉPONDRE' : 'RSVP' }}</span>
       </button> 
     </div>
+    <button @click="toggleLangage" class="absolute right-6 top-6 uppercase h-10 w-10 cursor-pointer flex items-center justify-center md:hidden hover:opacity-80">{{ currentLang === 'fr' ? 'EN' : 'FR' }}</button>
     <router-view />
   </div>
 </template>
