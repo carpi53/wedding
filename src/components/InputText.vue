@@ -9,11 +9,8 @@
 
     <textarea
       v-if="type === 'textarea'"
-      :id="id"
+      id="textarea"
       data-type="textarea"
-      :value="modelValue"
-      :maxlength="maxLength"
-      :disabled="disabled"
       rows="3"
       v-model="content"
       class="block w-full text-base text-primary rounded-xl px-3 py-2 border border-primary placeholder:text-neutral-400 focus:outline-none  focus:border-primary-700 sm:text-sm sm:leading-6 disabled:bg-slate-100 disabled:text-slate-500"
@@ -78,8 +75,8 @@ label {
   position: absolute;
   top: 5px;
   right: 0;
-  font-weight: 500;
-  font-size: 1.2rem;
+  font-weight: 400;
+  font-size: 1rem;
   line-height: 1.6rem;
   letter-spacing: -0.214286px;
   color: #cd2c2c;
@@ -90,12 +87,6 @@ label {
 }
 
 .redInput {
-  border-bottom: 1px solid #cd2c2c;
-}
-
-@media (max-width: 760px) {
-  label {
-    margin-left: 10px;
-  }
+  border: 1px solid #cd2c2c;
 }
 </style>

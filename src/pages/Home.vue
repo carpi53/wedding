@@ -50,8 +50,8 @@
       <p class="mt-4">{{ currentLang === 'fr' ? 'Pensez à nous confirmer votre présence avant' : 'Please RSVP' }}<strong> {{ currentLang === 'fr' ? ' le 30 juin 2025' : ' by June 30, 2025' }}</strong></p>
     </div>
     <form @submit.prevent="submitForm" class="space-y-4 rounded max-w-lg mx-auto mt-6">
-      <InputText name="fullName" :label="currentLang === 'fr' ? 'Nom' : 'Full Name'" type="text" v-model="form.name" />
-      <InputText name="email" label="Email" type="text" v-model="form.email" />
+      <InputText name="name" :label="currentLang === 'fr' ? 'Nom' : 'Full Name'" type="text" v-model="form.name" :errorMessage="errorMsg.name" @resetError="resetError"/>
+      <InputText name="email" label="Email" type="text" v-model="form.email" :errorMessage="errorMsg.email" @resetError="resetError"/>
       <div class="flex gap-3">
         <div class="flex h-6 shrink-0 items-center">
           <div class="group grid size-4 grid-cols-1">
@@ -66,7 +66,7 @@
           <label for="comments" class="font-medium text-primary cursor-pointer">{{ currentLang === 'fr' ? ' Je serai présent' : ' I will be present' }}</label>
         </div>
       </div>
-      <InputText v-if="form.is_present" name="email" :label="currentLang === 'fr' ? 'Nombre de personnes' : 'Number of people'" type="number" v-model="form.participants" />
+      <InputText v-if="form.is_present" name="numberOfParticipants" :label="currentLang === 'fr' ? 'Nombre de personnes' : 'Number of people'" type="number" v-model="form.participants" />
       <InputText name="message" label="Message" type="textarea" v-model="form.message" />
       <button type="submit" class="bg-primary text-white px-4 py-2 flex items-center justify-center block mx-auto">
         <svg v-if="loading" class="mr-3 -ml-1 size-5 animate-spin text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
@@ -77,7 +77,7 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, onMounted, onUnmounted } from 'vue';
+import { reactive, onMounted, onUnmounted, Ref } from 'vue';
 import { inject, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import InputText from '../components/InputText.vue';
@@ -87,11 +87,26 @@ const lang = route.query.lang as string | undefined;
 
 const loading = ref(false);
 
-const currentLang = inject<Ref<boolean>>('currentLang');
+const currentLang = inject<Ref<string>>('currentLang');
 
 if (lang && (lang === 'fr' || lang === 'en') && currentLang) {
     currentLang.value = lang;
 }
+
+const errorMsg = reactive({
+  name: "",
+  email: "",
+});
+
+interface Validity {
+    email: boolean;
+    name: boolean;
+}
+
+const inputsValidity: Validity = {
+  name: false,
+  email: false,
+};
 
 const form = reactive({
   email: '',
@@ -102,22 +117,54 @@ const form = reactive({
 });
 
 function submitForm() {
-loading.value = true;
-debugger;
-fetch(`https://script.google.com/macros/s/AKfycbyq1wf8tIfzY5d1RISxcktg9bOr0K1xeYgdz6_Aa47ZvrW99B1gSdEgl1L9EWwgWbURww/exec?path=Sheet1&Name=${form.name}&Email=${form.email}&Present=${form.is_present ? 'Oui' : 'Non'}&NumberOfParticipants=${form.participants}&Message=${form.message}`, {
-  method: "GET",
-})
-  .then(response => {
-    if(response.ok){
+  verifName(form.name);
+  verifEmail(form.email);
+  const keys = Object.keys(inputsValidity);
+  const failedInput = keys.filter((key: string) => !inputsValidity[key as keyof Validity]);
+  if (!failedInput.length) {
+    loading.value = true;
+    fetch(`https://script.google.com/macros/s/AKfycbyq1wf8tIfzY5d1RISxcktg9bOr0K1xeYgdz6_Aa47ZvrW99B1gSdEgl1L9EWwgWbURww/exec?path=Sheet1&Name=${form.name}&Email=${form.email}&Present=${form.is_present ? 'Oui' : 'Non'}&NumberOfParticipants=${form.participants}&Message=${form.message}`, {
+      method: "GET",
+    })
+    .then(response => {
+      if(response.ok){
+        loading.value = false;
+        alert("Merci pour votre réponse !");
+      }
+    })
+    .catch(err => {
       loading.value = false;
-      alert("Merci pour votre réponse !");
-    }
-  })
-  .catch(err => {
-    loading.value = false;
-    console.error("Erreur : ", err);
-    alert("Erreur lors de l'envoi du formulaire.");
-  });
+      console.error("Erreur : ", err);
+      alert("Erreur lors de l'envoi du formulaire.");
+    });
+  }
+}
+
+function verifEmail(email: string) {
+  if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+    errorMsg.email = currentLang && currentLang.value === 'en' ? "email invalid" : "Votre email est invalide";
+    inputsValidity.email = false;
+    return false;
+  }
+  errorMsg.email = "";
+  inputsValidity.email = true;
+  return true;
+}
+
+function verifName(name: string) {
+  if (name === "") {
+    errorMsg.name = currentLang && currentLang.value === 'en' ? "empty field" : "Champ vide";
+    inputsValidity.name = false;
+    return false;
+  }
+  errorMsg.name = "";
+  inputsValidity.name = true;
+  return true;
+}
+
+function resetError(key: keyof Validity) {
+  debugger;
+  errorMsg[key] = "";
 }
 
 const targetDate = new Date('2026-02-22T00:00:00');
