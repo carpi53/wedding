@@ -162,31 +162,31 @@ onUnmounted(() => {
 .title {
   opacity: 0;
   transform: translateY(-50px);
-  animation: apparition 0.8s 0.2s ease-out forwards;
+  animation: apparition 0.8s 0.1s ease-out forwards;
 }
 
 .subtitle {
   opacity: 0;
   transform: translateY(-30px);
-  animation: apparition 0.8s 0.4s ease-out forwards;
+  animation: apparition 0.8s 0.2s ease-out forwards;
 }
 
 .illustration {
   opacity: 0;
-  transform: translateY(-100%);
-  animation: apparition 0.8s 0.5s ease-out forwards;
+  transform: translateX(-100%);
+  animation: apparition 0.8s 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
 }
 
 .date {
   opacity: 0;
-  transform: translateX(100%);
-  animation: apparition 0.8s 1s ease-out forwards;
+  transform: translateY(40px);
+  animation: apparition 0.8s 1.3s ease-out forwards;
 }
 
 .lieu {
   opacity: 0;
-  transform: translateX(-100%);
-  animation: apparition 0.8s 1.2s ease-out forwards;
+  transform: translateY(40px);
+  animation: apparition 0.8s 1.4s ease-out forwards;
 }
 
 nav li::after {
