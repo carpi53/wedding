@@ -1,5 +1,5 @@
 <template>
-  <section id="home" class="home bg-[url(/wedding5.JPG)] relative bg-no-repeat bg-cover text-amber-50 pt-16 px-6 pb-14 md:pt-[60px] h-dvh md:min-h-[800px] bg-center md:bg-[url(/wedding1.JPG)]">
+  <section id="home" class="home bg-[url(/wedding5.JPG)] relative bg-no-repeat bg-cover text-amber-50 pt-16 px-6 pb-6 md:pt-[60px] h-dvh md:min-h-[800px] bg-center md:bg-[url(/wedding1.JPG)]">
     <div class="whitespace-nowrap h-full text-center flex flex-col md:h-fit md:absolute md:right-1/3 md:translate-x-1/2 md:-translate-y-1/2 md:top-1/2">
       <h2 class="title text-clamp-7xl font-extralight">Yoginee & Adrien</h2>
       <p class="subtitle mt-2 font-extralight text-clamp-5xl">{{ currentLang === 'fr' ? 'se marient' : 'are getting married' }}</p>
