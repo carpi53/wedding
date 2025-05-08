@@ -1,46 +1,63 @@
 <template>
-  <section id="home" class="pt-14 px-6 pb-6 md:pt-[60px] bg-background md:h-screen">
-    <div class="mx-auto text-center">
-      <h2 class="title text-clamp-6xl font-extralight tracking-widest text-primary">Yoginee & Adrien</h2>
-      <p class="subtitle mt-2 text-clamp-2xl text-primary">{{ currentLang === 'fr' ? 'se marient' : 'are getting married' }}</p>
-      <img src="/us.webp" class="illustration h-[400px] mx-auto mt-4 object-cover object-center rounded-xl shadow-2xl 2xl:h-[500px]">
-      <p class="date mt-8 text-primary font-extrabold tracking-widest text-clamp-3xl">{{ currentLang === 'fr' ? 'LE 22 FÉVRIER 2026' : 'FEBRUARY 22, 2026' }}</p>
-      <div class="date mt-4 text-primary font-medium tracking-widest text-clamp-xl">
+  <section id="home" class="home bg-[url(/wedding5.JPG)] relative bg-no-repeat bg-cover text-amber-50 pt-28 px-6 pb-6 md:pt-[60px] h-screen md:min-h-[800px] bg-center md:bg-[url(/wedding1.JPG)]">
+    <div class="whitespace-nowrap h-full text-center flex flex-col md:h-fit md:absolute md:right-1/3 md:translate-x-1/2 md:-translate-y-1/2 md:top-1/2">
+      <h2 class="title text-clamp-7xl font-extralight">Yoginee & Adrien</h2>
+      <p class="subtitle mt-2 font-extralight text-clamp-5xl">{{ currentLang === 'fr' ? 'se marient' : 'are getting married' }}</p>
+      <div class="w-0.5 bg-amber-50 h-28 mx-auto my-4 rounded-full "></div>
+      <p class="date mt-auto font-extrabold tracking-widest text-clamp-3xl">{{ currentLang === 'fr' ? 'LE 22 FÉVRIER 2026' : 'FEBRUARY 22, 2026' }}</p>
+      <div class="w-fit mx-auto date mt-4 font-medium tracking-widest text-clamp-xl border-2 border-amber-50 rounded-md p-2">
         <p v-if="timeLeft">{{ timeLeft.days }}{{ currentLang === 'fr' ? ' Jours' : ' Days' }} - {{ timeLeft.hours }}h {{ timeLeft.minutes }}m {{ timeLeft.seconds }}s</p>
         <p v-else>🎉 {{ currentLang === 'fr' ? ' Le grand jour est arrivé!' : 'The day has arrived!' }}</p>
       </div>
-      <p class="lieu mt-4 text-clamp-2xl text-primary">{{ currentLang === 'fr' ? 'à l\'île Maurice' : 'in Mauritius' }}</p>
+      <p class="lieu mt-4 text-clamp-2xl">{{ currentLang === 'fr' ? 'à l\'île Maurice' : 'in Mauritius' }}</p>
     </div>
-    <!-- <img src="/mauritius.jpeg" class="shape absolute bottom-0 right-0 w-[300px]"> -->
   </section>
-  <section class="parallax w-full h-[500px] bg-slate-200">
-  </section>
-  <section id="localisation" class="bg-white p-[60px] text-primary">
-    <div class="mx-auto max-w-2xl text-center leading-10">
-      <img src="/mauritius.jpeg" class="shape w-[300px] mx-auto">
+  <section id="localisation" class="bg-white py-10 px-6 text-primary md:py-20">
+    <div class="mx-auto md:max-w-2xl text-center leading-10">
       <h3 class="mt-6 text-primary font-extrabold tracking-widest text-3xl uppercase">{{ currentLang === 'fr' ? 'Ile Maurice' : 'Mauritius' }}</h3>
+      <h3 class="mt-4 text-lg font-medium mb-2">{{ currentLang === 'fr' ? 'Maurice : L’île de la mariée… et votre prochain coup de cœur' : 'Mauritius: The Bride’s Island, and Your New Obsession' }}</h3>
+      <p class="mt-6 text-left">
+        {{ currentLang === 'fr' ? 'Bienvenue à l’île Maurice, terre natale de la mariée et petit coin de paradis tout droit sorti d’un rêve. Entre plages à couper le souffle, cuisine qui fait danser les papilles, et culture riche en couleurs et en sourires, cette île ne se visite pas… elle se vit. Et on vous prévient : vous n’êtes pas prêts pour les saveurs, les paysages, ni pour les festivités qui s’annoncent. Maurice vous attend, et la fête ne fait que commencer !' : 'Welcome to Mauritius, the bride’s beautiful birth island and soon to be your favorite place on Earth. With beaches so stunning they look filtered (they’re not), food that will ruin all other food for you, and a culture that dances between vibrant and heartfelt, this island is more than just a destination, it’s an experience. You’re not ready for the flavors, the sunsets, or the celebrations we have in store. Paradise is calling…and it’s wearing wedding shoes!' }}
+      </p>
       <div class="mt-6">
         <iframe class="w-full h-64" src="https://maps.google.com/maps?q=ile%20maurice&t=&z=13&ie=UTF8&iwloc=&output=embed"></iframe>
       </div>
     </div>
   </section>
-  <section id="schedule" class="bg-background p-[40px] text-primary">
+  <section class="h-screen relative pt-20">
+    <video class="w-full h-full object-fit object-cover absolute top-0 left-0 -z-[10]" muted loop autoplay>
+        <source src="/Maurice.mp4" type="video/mp4">
+    </video>
+    <h2 class="title text-clamp-7xl font-light text-amber-50 text-center">{{ currentLang === 'fr' ? 'Ce qui vous attend...' : 'What to expect...' }}</h2>
+  </section>
+  <section id="schedule" class="bg-white py-10 md:p-[40px] text-primary">
     <div class="mx-auto max-w-4xl text-center leading-10">
-      <img src="/flower.avif" class="w-[100px] mx-auto">
-      <h3 class="mt-6 text-primary font-extrabold tracking-widest text-3xl uppercase">{{ currentLang === 'fr' ? 'Programme' : 'Schedule' }}</h3>
-      <p class="mt-6">⚠ {{ currentLang === 'fr' ? 'On ajoutera des infos au fur et à mesure, alors n’hésitez pas à repasser par ici pendant vos préparatifs.' : 'We’ll be updating the site as we go, so feel free to check back while you plan your trip.' }}</p>
-      <p class="mt-8 text-primary font-medium text-lg uppercase"><span class="font-bold">{{ currentLang === 'fr' ? 'Jour 1' : 'Day 1' }}</span> - 22/02/2026 - {{ currentLang === 'fr' ? 'Cérémonie Traditionnelle Tamoule' : 'Traditional Tamil Ceremony' }}</p>
-      <ul class="mt-4 w-lg text-center w-full max-w-[500px] mx-auto">
-        <li class="mt-2">📍 <span class="font-semibold">{{ currentLang === 'fr' ? 'Location' : 'Lieu' }}</span> : Temple tamoul</li>
-        <li class="mt-2">🕑 <span class="font-semibold">{{ currentLang === 'fr' ? 'Heure : ' : 'Time : ' }}</span>{{ currentLang === 'fr' ? '10h00 – 14h00' : '10am – 02pm' }}</li>
-        <li class="mt-2">👕 <span class="font-semibold">{{ currentLang === 'fr' ? 'Code vestimentaire : ' : 'Dress code :' }}</span> {{ currentLang === 'fr' ? 'Tenue traditionnelle tamoule. Pour celles/ceux qui optent pour une tenue occidentale, merci de vous assurer que c’est décent et approprié.' : 'Traditional Tamil attire. For those choosing Western clothing, please ensure it is modest and appropriate.' }}</li>
-      </ul>
-      <p class="mt-10 text-primary font-medium text-lg uppercase"><span class="font-bold">{{ currentLang === 'fr' ? 'Jour 2' : 'Day 2' }}</span> - 23/02/2026 - {{ currentLang === 'fr' ? 'Cérémonie Laïque et Réception' : 'Secular ceremony' }}</p>
-      <ul class="mt-4 w-lg text-center w-full max-w-[500px] mx-auto">
-        <li class="mt-2">📍 <span class="font-semibold">{{ currentLang === 'fr' ? 'Location' : 'Lieu' }}</span> : {{ currentLang === 'fr' ? 'Encore à définir' : 'coming soon' }}</li>
-        <li class="mt-2">🕑 <span class="font-semibold">{{ currentLang === 'fr' ? 'Heure : ' : 'Time : ' }}</span>{{ currentLang === 'fr' ? '18h00 – 23h00' : '06pm – 11pm' }}</li>
-        <li class="mt-2">👕 <span class="font-semibold">{{ currentLang === 'fr' ? 'Code vestimentaire : ' : 'Dress code :' }}</span> {{ currentLang === 'fr' ? 'Élegant' : 'Elegant attire' }}</li>
-      </ul>
+      <h3 class="mt-6 px-2 text-primary font-extrabold tracking-widest text-3xl uppercase">{{ currentLang === 'fr' ? 'Au programme' : 'Agenda' }}</h3>
+      <p class="mt-6 px-2">⚠ {{ currentLang === 'fr' ? 'On ajoutera des infos au fur et à mesure, alors n’hésitez pas à repasser par ici pendant vos préparatifs.' : 'We’ll be updating the site as we go, so feel free to check back while you plan your trip.' }}</p>
+      <div class="grid grid-cols-2 gap-2 px-2">
+      <div>
+        <p class="mt-8 text-primary font-medium text-lg uppercase"><span class="font-bold">{{ currentLang === 'fr' ? 'Jour 1' : 'Day 1' }}</span></p>
+        <p class="mt-4 text-primary font-medium text-lg">{{ currentLang === 'fr' ? ' Cérémonie Tamoule' : ' Traditional Tamil Ceremony' }}</p>
+        <ul class="mt-4 w-lg text-center w-full max-w-[500px] mx-auto">
+          <li class="mt-2">📍 <span class="font-semibold">{{ currentLang === 'fr' ? 'Lieu' : 'Location' }}</span> : Temple tamoul</li>
+          <li class="mt-2">{{ currentLang === 'fr' ? '10h00 – 14h00' : '10am – 02pm' }}</li>
+        </ul>
+        <RouterLink to="/day/1">
+          <span class="text-center underline">En savoir plus</span>
+        </RouterLink>
+      </div>
+      <div>
+        <p class="mt-8 text-primary font-medium text-lg uppercase"><span class="font-bold">{{ currentLang === 'fr' ? 'Jour 2' : 'Day 2' }}</span></p>
+        <p class="mt-4 text-primary font-medium text-lg">{{ currentLang === 'fr' ? ' Cérémonie Laïque et Réception' : ' Secular ceremony' }}</p>
+        <ul class="mt-4 w-lg text-center w-full max-w-[500px] mx-auto">
+          <li class="mt-2">📍 <span class="font-semibold">{{ currentLang === 'fr' ? 'Lieu' : 'Location' }}</span> : {{ currentLang === 'fr' ? 'Encore à définir' : 'coming soon' }}</li>
+          <li class="mt-2">{{ currentLang === 'fr' ? '18h00 – 23h00' : '06pm – 11pm' }}</li>
+        </ul>
+        <RouterLink to="/day/2">
+          <span class="text-center underline">En savoir plus</span>
+        </RouterLink>
+      </div>
+    </div>
     </div>
   </section>
   <section id="rsvp" class="p-8 bg-background border-t border-primary/20">
@@ -213,16 +230,22 @@ onUnmounted(() => {
   background-attachment: fixed;
 }
 
+.home {
+  font-family: 'Poppins';
+}
+
 .title {
   opacity: 0;
   transform: translateY(-50px);
   animation: apparition 0.8s 0.1s ease-out forwards;
+  font-family: 'Dancing Script';
 }
 
 .subtitle {
   opacity: 0;
   transform: translateY(-30px);
   animation: apparition 0.8s 0.2s ease-out forwards;
+  font-family: 'Dancing Script';
 }
 
 .illustration {
@@ -234,13 +257,13 @@ onUnmounted(() => {
 .date {
   opacity: 0;
   transform: translateY(40px);
-  animation: apparition 0.8s 1.3s ease-out forwards;
+  animation: apparition 0.8s 0.8s ease-out forwards;
 }
 
 .lieu {
   opacity: 0;
   transform: translateY(40px);
-  animation: apparition 0.8s 1.4s ease-out forwards;
+  animation: apparition 0.8s 0.9s ease-out forwards;
 }
 
 nav li::after {

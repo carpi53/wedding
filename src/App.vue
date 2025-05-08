@@ -1,13 +1,16 @@
 <template>
   <div id="home" class="text-primary">
-    <nav class="fixed z-30 left-20 top-20 bg-transparent">
+    <nav v-if="isHomePage" class="fixed z-30 left-20 top-20 bg-transparent">
       <ul class="hidden flex-col gap-4 justify-between text-primary lg:flex">
         <li class="hover:text-black cursor-pointer" @click="goToLink('home')">{{ currentLang === 'fr' ? 'Accueil' : 'Home' }}</li>
-        <li  class="hover:text-black cursor-pointer" @click="goToLink('localisation')">{{ currentLang === 'fr' ? 'Ou ça se passe ?' : 'Where is it ?' }}</li>
-        <li class="hover:text-black cursor-pointer" @click="goToLink('schedule')">{{ currentLang === 'fr' ? 'Le programme' : 'Schedule' }}</li>
+        <li  class="hover:text-black cursor-pointer" @click="goToLink('localisation')">{{ currentLang === 'fr' ? 'Ou ça se passe ?' : 'Where is it?' }}</li>
+        <li class="hover:text-black cursor-pointer" @click="goToLink('schedule')">{{ currentLang === 'fr' ? 'Le programme' : 'Agenda' }}</li>
+        <!-- <li class="hover:text-black cursor-pointer"><RouterLink to="/travel/">
+          {{ currentLang === 'fr' ? 'Voyage : Info Pratiques' : 'Travel: Usefull tips' }} 
+        </RouterLink></li> -->
       </ul>
     </nav>
-    <nav class="fixed z-30 top-0 bg-blue-500 w-full">
+    <nav v-if="isHomePage"  class="fixed z-30 top-0 bg-blue-500 w-full">
       <button type="button" @click="curtainNavigation = !curtainNavigation" aria-label="toggle curtain navigation"
         class="nav-toggler" :class="{ active: curtainNavigation }">
         <span class="line l1" :class="[curtainNavigation ? 'bg-white' : 'bg-primary']"></span>
@@ -16,14 +19,14 @@
       </button>
       <div class="nav-links-curtain" :class="{ active: curtainNavigation }">
           <span class="text-white cursor-pointer" @click="goToLink('home')">{{ currentLang === 'fr' ? 'Accueil' : 'Home' }}</span>
-          <span  class="text-white cursor-pointer" @click="goToLink('localisation')">{{ currentLang === 'fr' ? 'Ou ça se passe ?' : 'Where is it ?' }}</span>
-          <span class="text-white cursor-pointer" @click="goToLink('schedule')">{{ currentLang === 'fr' ? 'Le programme' : 'Schedule' }}</span>
+          <span  class="text-white cursor-pointer" @click="goToLink('localisation')">{{ currentLang === 'fr' ? 'Ou ça se passe ?' : 'Where is it?' }}</span>
+          <span class="text-white cursor-pointer" @click="goToLink('schedule')">{{ currentLang === 'fr' ? 'Le programme' : 'Agenda' }}</span>
           <span class="text-white cursor-pointer" @click="goToLink('rsvp')">{{ currentLang === 'fr' ? 'Répondre à l\'invitation' : 'RSVP' }}</span>
       </div>
     </nav>
     <div class="hidden fixed z-50 right-20 top-10 gap-6 items-center lg:flex">
       <button @click="toggleLangage" class="uppercase h-10 w-10 cursor-pointer flex items-center justify-center hover:opacity-80">{{ currentLang === 'fr' ? 'EN' : 'FR' }}</button>
-      <button @click="goToLink('rsvp')" type="button" class="bg-primary text-white px-6 py-2 cursor-pointer transition duration-150 ease-in-out hover:opacity-90">
+      <button v-if="isHomePage" @click="goToLink('rsvp')" type="button" class="bg-primary text-white px-6 py-2 cursor-pointer transition duration-150 ease-in-out hover:opacity-90">
         <span>{{ currentLang === 'fr' ? 'RÉPONDRE' : 'RSVP' }}</span>
       </button> 
     </div>
@@ -33,13 +36,15 @@
 </template>
 
 <script lang="ts" setup>
-import { provide, ref } from 'vue';
+import { provide, ref, computed } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import type { Ref } from 'vue';
 
 const curtainNavigation = ref<boolean>(false);
+const route = useRoute();
+const router = useRouter();
 
-function goToLink(id) {
+function goToLink(id: string) {
   curtainNavigation.value = false;
   const section = document.getElementById(id);
     if (section) {
@@ -49,8 +54,9 @@ function goToLink(id) {
     }
 }
 
-const route = useRoute();
-const router = useRouter();
+const isHomePage = computed(() => {
+  return route.path === '/';
+})
 
 const currentLang = ref('fr');
 
