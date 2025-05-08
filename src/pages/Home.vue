@@ -1,5 +1,5 @@
 <template>
-  <section id="home" class="home bg-[url(/wedding5.JPG)] relative bg-no-repeat bg-cover text-amber-50 pt-28 px-6 pb-6 md:pt-[60px] h-screen md:min-h-[800px] bg-center md:bg-[url(/wedding1.JPG)]">
+  <section id="home" class="home bg-[url(/wedding5.JPG)] relative bg-no-repeat bg-cover text-amber-50 pt-16 px-6 pb-14 md:pt-[60px] h-dvh md:min-h-[800px] bg-center md:bg-[url(/wedding1.JPG)]">
     <div class="whitespace-nowrap h-full text-center flex flex-col md:h-fit md:absolute md:right-1/3 md:translate-x-1/2 md:-translate-y-1/2 md:top-1/2">
       <h2 class="title text-clamp-7xl font-extralight">Yoginee & Adrien</h2>
       <p class="subtitle mt-2 font-extralight text-clamp-5xl">{{ currentLang === 'fr' ? 'se marient' : 'are getting married' }}</p>
@@ -25,16 +25,16 @@
     </div>
   </section>
   <section class="h-screen relative pt-20">
-    <video class="w-full h-full object-fit object-cover absolute top-0 left-0 -z-[10]" muted loop autoplay>
+    <video class="w-full h-full object-fit object-cover absolute top-0 left-0 -z-[10]" muted playsinline autoplay loop>
         <source src="/Maurice.mp4" type="video/mp4">
     </video>
-    <h2 class="title text-clamp-7xl font-light text-amber-50 text-center">{{ currentLang === 'fr' ? 'Ce qui vous attend...' : 'What to expect...' }}</h2>
+    <h2 class="text-clamp-7xl font-light text-amber-50 text-center">{{ currentLang === 'fr' ? 'Ce qui vous attend...' : 'What to expect...' }}</h2>
   </section>
   <section id="schedule" class="bg-white py-10 md:p-[40px] text-primary">
     <div class="mx-auto max-w-4xl text-center leading-10">
-      <h3 class="mt-6 px-2 text-primary font-extrabold tracking-widest text-3xl uppercase">{{ currentLang === 'fr' ? 'Au programme' : 'Agenda' }}</h3>
-      <p class="mt-6 px-2">⚠ {{ currentLang === 'fr' ? 'On ajoutera des infos au fur et à mesure, alors n’hésitez pas à repasser par ici pendant vos préparatifs.' : 'We’ll be updating the site as we go, so feel free to check back while you plan your trip.' }}</p>
-      <div class="grid grid-cols-2 gap-2 px-2">
+      <h3 class="mt-6 px-4 text-primary font-extrabold tracking-widest text-3xl uppercase">{{ currentLang === 'fr' ? 'Au programme' : 'Agenda' }}</h3>
+      <p class="mt-6 px-4">⚠ {{ currentLang === 'fr' ? 'On ajoutera des infos au fur et à mesure, alors n’hésitez pas à repasser par ici pendant vos préparatifs.' : 'We’ll be updating the site as we go, so feel free to check back while you plan your trip.' }}</p>
+      <div class="grid md:grid-cols-2 gap-2 px-2">
       <div>
         <p class="mt-8 text-primary font-medium text-lg uppercase"><span class="font-bold">{{ currentLang === 'fr' ? 'Jour 1' : 'Day 1' }}</span></p>
         <p class="mt-4 text-primary font-medium text-lg">{{ currentLang === 'fr' ? ' Cérémonie Tamoule' : ' Traditional Tamil Ceremony' }}</p>
