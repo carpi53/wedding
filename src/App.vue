@@ -1,5 +1,5 @@
 <template>
-  <div id="home" class="text-primary">
+  <div id="home" class="text-primary relative">
     <nav v-if="isHomePage" class="fixed z-30 left-20 top-20 bg-transparent">
       <ul class="hidden flex-col gap-4 justify-between text-primary lg:flex">
         <li class="hover:text-black cursor-pointer" @click="goToLink('home')">{{ currentLang === 'fr' ? 'Accueil' : 'Home' }}</li>
@@ -24,6 +24,7 @@
           <span class="text-white cursor-pointer" @click="goToLink('rsvp')">{{ currentLang === 'fr' ? 'Répondre à l\'invitation' : 'RSVP' }}</span>
       </div>
     </nav>
+    <button @click="toggleLangage" class="block absolute z-20 top-4 right-6 uppercase h-10 w-10 cursor-pointer flex items-center justify-center hover:opacity-80 md:hidden">{{ currentLang === 'fr' ? 'EN' : 'FR' }}</button>
     <div class="hidden fixed z-50 right-20 top-10 gap-6 items-center lg:flex">
       <button @click="toggleLangage" class="uppercase h-10 w-10 cursor-pointer flex items-center justify-center hover:opacity-80">{{ currentLang === 'fr' ? 'EN' : 'FR' }}</button>
       <button v-if="isHomePage" @click="goToLink('rsvp')" type="button" class="bg-primary text-white px-6 py-2 cursor-pointer transition duration-150 ease-in-out hover:opacity-90">

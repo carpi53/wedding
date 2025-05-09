@@ -17,7 +17,7 @@
       :class="{ 'border-red-600': errorMessage }"
     />
 
-    <input v-if="type === 'number'" class="input-text" :type="type" :name="name" :id="name" rows="3" autocomplete="off" :class="{ redInput: errorMessage }" v-model="content"
+    <input v-if="type === 'number'" class="input-text" :type="type" :min="0" :max="max" :name="name" :id="name" rows="3" autocomplete="off" :class="{ redInput: errorMessage }" v-model="content"
         @input="resetError" />
   </div>
 </template>
@@ -34,6 +34,7 @@ const props = defineProps({
   label: String,
   errorMessage: String,
   type: String,
+  max: {type: Number, required: false},
 })
 
 function resetError() {

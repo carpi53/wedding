@@ -40,7 +40,7 @@
         <p class="mt-4 text-primary font-medium text-lg">{{ currentLang === 'fr' ? ' Cérémonie Tamoule' : ' Traditional Tamil Ceremony' }}</p>
         <ul class="mt-4 w-lg text-center w-full max-w-[500px] mx-auto">
           <li class="mt-2">📍 <span class="font-semibold">{{ currentLang === 'fr' ? 'Lieu' : 'Location' }}</span> : Temple tamoul</li>
-          <li class="mt-2">{{ currentLang === 'fr' ? '10h00 – 14h00' : '10am – 02pm' }}</li>
+          <li class="mt-2">{{ currentLang === 'fr' ? 'Encore à définir' : 'coming soon' }}</li>
         </ul>
         <RouterLink to="/day/1">
           <span class="text-center underline">En savoir plus</span>
@@ -83,8 +83,9 @@
           <label for="comments" class="font-medium text-primary cursor-pointer">{{ currentLang === 'fr' ? ' Je serai présent' : ' I will be present' }}</label>
         </div>
       </div>
-      <InputText v-if="form.is_present" name="numberOfParticipants" :label="currentLang === 'fr' ? 'Nombre de personnes' : 'Number of people'" type="number" v-model="form.participants" />
-      <InputText name="message" label="Message" type="textarea" v-model="form.message" />
+      <InputText v-if="form.is_present" :max="2" name="numberOfParticipants" :label="currentLang === 'fr' ? 'Nombre d\'adultes' : 'Number of adults'" type="number" v-model="form.participants" />
+      <InputText v-if="form.is_present" :max="3" name="numberOfChildrens" :label="currentLang === 'fr' ? 'Nombre d\'enfants' : 'Number of childrens'" type="number" v-model="form.childs" />
+      <InputText name="message" :label="currentLang === 'fr' ? 'Allergies, régime alimentaire, questions' : 'Allergies, dietary requirements, questions'"  type="textarea" v-model="form.message" />
       <button type="submit" class="bg-primary text-white px-4 py-2 flex items-center justify-center block mx-auto">
         <svg v-if="loading" class="mr-3 -ml-1 size-5 animate-spin text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
         {{ currentLang === 'fr' ? 'Envoyer' : 'Send' }}
@@ -131,6 +132,7 @@ const form = reactive({
   message: '',
   is_present: false,
   participants: 0,
+  childs: 0,
 });
 
 function submitForm() {
@@ -140,7 +142,7 @@ function submitForm() {
   const failedInput = keys.filter((key: string) => !inputsValidity[key as keyof Validity]);
   if (!failedInput.length) {
     loading.value = true;
-    fetch(`https://script.google.com/macros/s/AKfycbyq1wf8tIfzY5d1RISxcktg9bOr0K1xeYgdz6_Aa47ZvrW99B1gSdEgl1L9EWwgWbURww/exec?path=Sheet1&Name=${form.name}&Email=${form.email}&Present=${form.is_present ? 'Oui' : 'Non'}&NumberOfParticipants=${form.participants}&Message=${form.message}`, {
+    fetch(`https://script.google.com/macros/s/AKfycbyq1wf8tIfzY5d1RISxcktg9bOr0K1xeYgdz6_Aa47ZvrW99B1gSdEgl1L9EWwgWbURww/exec?path=Sheet1&Name=${form.name}&Email=${form.email}&Present=${form.is_present ? 'Oui' : 'Non'}&Adults=${form.participants}&Childs=${form.childs}&Message=${form.message}`, {
       method: "GET",
     })
     .then(response => {
