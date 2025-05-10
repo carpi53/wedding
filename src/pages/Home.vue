@@ -142,7 +142,7 @@ function submitForm() {
   const failedInput = keys.filter((key: string) => !inputsValidity[key as keyof Validity]);
   if (!failedInput.length) {
     loading.value = true;
-    fetch(`https://script.google.com/macros/s/AKfycbyq1wf8tIfzY5d1RISxcktg9bOr0K1xeYgdz6_Aa47ZvrW99B1gSdEgl1L9EWwgWbURww/exec?path=Sheet1&Name=${form.name}&Email=${form.email}&Present=${form.is_present ? 'Oui' : 'Non'}&Adults=${form.participants}&Childs=${form.childs}&Message=${form.message}`, {
+    fetch(`https://script.google.com/macros/s/AKfycbyncl3DZr57FkDc6tj-PBp-8wa3cvHFAWkQLUlA38PukvENLtDDfHHFm4zgDLc-Ixk88g/exec?path=Sheet1&Name=${form.name}&Email=${form.email}&Present=${form.is_present ? 'Oui' : 'Non'}&Adults=${form.participants}&Childs=${form.childs}&Message=${form.message}`, {
       method: "GET",
     })
     .then(response => {
