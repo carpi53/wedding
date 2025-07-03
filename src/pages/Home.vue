@@ -64,7 +64,7 @@
     <h3 class="mt-6 text-center text-primary font-extrabold tracking-widest text-3xl uppercase">{{ currentLang === 'fr' ? 'Répondre' : 'Rsvp' }}</h3>
     <div class="mx-auto max-w-2xl leading-7 text-center text-primary md:leading-10">
       <p class="mt-6">{{ currentLang === 'fr' ? 'Nous avons hâte de vivre cette aventure avec vous !' : 'We can’t wait to celebrate this adventure with you!' }}</p>
-      <p class="mt-4">{{ currentLang === 'fr' ? 'Pensez à nous confirmer votre présence avant' : 'Please RSVP' }}<strong> {{ currentLang === 'fr' ? ' le 30 juin 2025' : ' by June 30, 2025' }}</strong></p>
+      <p class="mt-4">{{ currentLang === 'fr' ? 'Pensez à nous confirmer votre présence avant' : 'Please RSVP' }}<strong> {{ currentLang === 'fr' ? ' le 30 juillet 2025' : ' by July 30, 2025' }}</strong></p>
     </div>
     <form @submit.prevent="submitForm" class="space-y-4 rounded max-w-lg mx-auto mt-6">
       <InputText name="name" :label="currentLang === 'fr' ? 'Nom' : 'Full Name'" type="text" v-model="form.name" :errorMessage="errorMsg.name" @resetError="resetError"/>
