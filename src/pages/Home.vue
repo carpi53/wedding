@@ -64,7 +64,7 @@
     <h3 class="mt-6 text-center text-primary font-extrabold tracking-widest text-3xl uppercase">{{ currentLang === 'fr' ? 'Répondre' : 'Rsvp' }}</h3>
     <div class="mx-auto max-w-2xl leading-7 text-center text-primary md:leading-10">
       <p class="mt-6">{{ currentLang === 'fr' ? 'Nous avons hâte de vivre cette aventure avec vous !' : 'We can’t wait to celebrate this adventure with you!' }}</p>
-      <p class="mt-4">{{ currentLang === 'fr' ? 'Pensez à nous confirmer votre présence avant' : 'Please RSVP' }}<strong> {{ currentLang === 'fr' ? ' le 30 juillet 2025' : ' by July 30, 2025' }}</strong></p>
+      <p class="mt-4">{{ currentLang === 'fr' ? 'Pensez à nous confirmer votre présence avant' : 'Please RSVP' }}<strong> {{ currentLang === 'fr' ? ' le 30 août 2025' : ' by August 30, 2025' }}</strong></p>
     </div>
     <form @submit.prevent="submitForm" class="space-y-4 rounded max-w-lg mx-auto mt-6">
       <InputText name="name" :label="currentLang === 'fr' ? 'Nom' : 'Full Name'" type="text" v-model="form.name" :errorMessage="errorMsg.name" @resetError="resetError"/>
@@ -86,7 +86,7 @@
       <InputText v-if="form.is_present" :max="2" name="numberOfParticipants" :label="currentLang === 'fr' ? 'Nombre d\'adultes' : 'Number of adults'" type="number" v-model="form.participants" />
       <InputText v-if="form.is_present" :max="3" name="numberOfChildrens" :label="currentLang === 'fr' ? 'Nombre d\'enfants' : 'Number of childrens'" type="number" v-model="form.childs" />
       <InputText name="message" :label="currentLang === 'fr' ? 'Allergies, régime alimentaire, questions' : 'Allergies, dietary requirements, questions'"  type="textarea" v-model="form.message" />
-      <button type="submit" class="bg-primary text-white px-4 py-2 flex items-center justify-center block mx-auto">
+      <button type="submit" class="bg-primary text-white px-4 py-2 flex items-center justify-center mx-auto">
         <svg v-if="loading" class="mr-3 -ml-1 size-5 animate-spin text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
         {{ currentLang === 'fr' ? 'Envoyer' : 'Send' }}
       </button>
